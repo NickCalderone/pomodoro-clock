@@ -2,25 +2,24 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Clock extends React.Component{
+  constructor(props){
+    super(props)
+    this.inc = this.inc.bind(this)
+  }
+  inc(folder, key){
+    this.props.inc(folder, key)
+  }
+  render(){
+    return (
+      <div>
+        <h1>working</h1>
+        <h1>{this.props.store.timers.min}</h1>
+        <button onClick={() => this.inc('timers', 'min')}>increment minutes</button>
+        <h1>{this.props.store.timers.sec}</h1>
+        <button onClick={() => this.inc('timers', 'sec')}>increment seconds</button>
+      </div>
+    )
+  }
 }
-
-export default App;
+export default Clock

@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux'
+import { Provider, connect } from 'react-redux'
 import './index.css';
-import App from './App';
+import Clock from './App';
 import * as serviceWorker from './serviceWorker';
+import mapDispatchToProps from './dispatch'
+import reducer from './reducer'
+
+const mapStateToProps = (state) => ({
+  store: state
+})
+const store = createStore(reducer)
+const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(Clock)
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ConnectedComponent />
+  </Provider>,
   document.getElementById('root')
 );
 
