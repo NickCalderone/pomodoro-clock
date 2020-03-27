@@ -1,4 +1,5 @@
 const Actions = {
-   INC: 'INC'
+   INC: 'INC',
+   DEC: 'DEC'
 }
 export default Actions
