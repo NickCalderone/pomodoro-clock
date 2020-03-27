@@ -1,4 +1,3 @@
-import Creator from './creator'
 import Actions from './actions'
 
 const inc = (folder, key) => {
@@ -13,10 +12,21 @@ const dec = (folder, key) => ({
     folder: folder,
     key: key
 })
+const set = (folder, key, value) => ({
+    type: Actions.SET,
+    folder: folder,
+    key: key,
+    value: value
+})
+const flip = () => ({
+    type: Actions.FLIP
+})
 
 const mapDispatchToProps = (dispatch) => ({
     inc: (folder, key) => dispatch(inc(folder, key)),
-    dec: (folder, key) => dispatch(dec(folder, key))
+    dec: (folder, key) => dispatch(dec(folder, key)),
+    set: (folder, key, value) => dispatch(set(folder, key, value)),
+    flip: () => dispatch(flip())
 })
 
 export default mapDispatchToProps
