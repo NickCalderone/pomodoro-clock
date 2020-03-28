@@ -21,6 +21,8 @@ const reducer = function(state = initialState, action){
             }))
         case Actions.FLIP:
             return Object.assign({}, state, {flip: !state.flip})
+        case Actions.RESET:
+            return initialState
         default: 
             return state
     }

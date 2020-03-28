@@ -21,12 +21,16 @@ const set = (folder, key, value) => ({
 const flip = () => ({
     type: Actions.FLIP
 })
+const reset = () => ({
+    type: Actions.RESET
+})
 
 const mapDispatchToProps = (dispatch) => ({
     inc: (folder, key) => dispatch(inc(folder, key)),
     dec: (folder, key) => dispatch(dec(folder, key)),
     set: (folder, key, value) => dispatch(set(folder, key, value)),
-    flip: () => dispatch(flip())
+    flip: () => dispatch(flip()),
+    reset: () => dispatch(reset())
 })
 
 export default mapDispatchToProps

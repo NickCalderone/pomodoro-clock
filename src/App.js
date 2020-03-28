@@ -8,15 +8,16 @@ class Clock extends React.Component{
     this.inc = this.inc.bind(this)
     this.dec = this.dec.bind(this)
     this.handleTimer = this.handleTimer.bind(this)
+    this.reset = this.reset.bind(this)
   }
   intervalId = 0
   inc(folder, key){
-      if (this.props.store[folder][key] !== 59){
+      if (this.props.store[folder][key] < 60){
       this.props.inc(folder, key)
     } else return
   }
   dec(folder, key){
-      if (this.props.store[folder][key] !== 0){
+      if (this.props.store[folder][key] > 1){
       this.props.dec(folder, key)
     }
   }
@@ -47,6 +48,9 @@ class Clock extends React.Component{
       this.intervalId = 0
     }
   }
+  reset(){
+    this.props.reset()
+  }
   
   render(){
     return (
@@ -56,13 +60,13 @@ class Clock extends React.Component{
         <h1 id='session-label'>session length</h1>
         <h1 id='session-length'>{this.props.store.timers.session}</h1>
         <button id='session-increment' onClick={() => this.inc('timers', 'session')}>increment session</button>
-        <button id='session-decrement' onClick={() => this.timerLoop('timers', 'session')}>decrement session</button>
+        <button id='session-decrement' onClick={() => this.dec('timers', 'session')}>decrement session</button>
         <h1 id='break-label'>break length</h1>
         <h1 id='break-length'>{this.props.store.timers.break}</h1>
         <button id='break-increment' onClick={() => this.inc('timers', 'break')}>increment break</button>
         <button id='break-decrement' onClick={() => this.dec('timers', 'break')}>decrement break</button>
         <button id='start_stop' onClick={() => this.startStop('display', 'min')}>start/stop</button>
-        <button id='reset'>reset</button>
+        <button id='reset' onClick={this.reset}>reset</button>
       </div>
     )
   }
