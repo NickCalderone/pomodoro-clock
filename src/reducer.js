@@ -1,9 +1,10 @@
 import Actions from './actions'
 
 const initialState = {
-    timers: {session: 2, break: 1},
-    display: {min: 2, sec: 5},
-    flip: true
+    timers: {session: 25, break: 5},
+    display: {min: 25, sec: 0},
+    flip: true,
+    started: false
 } 
 const reducer = function(state = initialState, action){
     switch (action.type){
@@ -20,7 +21,7 @@ const reducer = function(state = initialState, action){
                 [action.folder]: Object.assign({}, state[action.folder], {[action.key]: action.value})
             }))
         case Actions.FLIP:
-            return Object.assign({}, state, {flip: !state.flip})
+            return Object.assign({}, state, {[action.folder]: !state[action.folder]})
         case Actions.RESET:
             return initialState
         default: 
